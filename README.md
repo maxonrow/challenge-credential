@@ -1,4 +1,4 @@
-# challenge-crendential
+# Credential
 
 ## problem statement
 - Especially during pandemic, it's very hard to ensure the genuineness of everyone's credentials. Credentials verification is lack of transparency not tamper-proof.
