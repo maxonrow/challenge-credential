@@ -176,15 +176,15 @@ export default class NftService {
             }, data);
 
             let nftToken = new NonFungibleToken(vData.nftSymbol, this.issuer);
-            let itemId: string = null;
-
             if (isUndefinedOrNullOrEmpty(vData.itemId)) {
-                itemId = vData.nftSymbol + "_" + vData.bizRegNo;
-            } 
+                vData.itemId = utils.sha256(toUtf8Bytes(vData.nftSymbol + "_" + vData.bizRegNo));
+            } else if (!String(vData.itemId).startsWith("0x")) {
+                vData.itemId = utils.sha256(toUtf8Bytes(vData.itemId));
+            }
 
             const itemProp = {
                 symbol: vData.nftSymbol,
-                itemID: utils.sha256(toUtf8Bytes(itemId)),
+                itemID: vData.itemId,
                 properties: JSON.stringify({
                     bizName: vData.bizName,
                     bizRegNo: vData.bizRegNo,
