@@ -1,9 +1,8 @@
 "use strict";
 
-import { checkFormat, checkString, checkNumber, allowNullOrEmpty, notAllowNullOrEmpty, isUndefinedOrNullOrEmpty, checkBoolean, checkBigNumber } from "mxw-libs-utils";
-import { mxw, nonFungibleToken as nfToken } from "mxw-sdk-js";
+import { checkFormat, checkString, checkNumber, allowNullOrEmpty, notAllowNullOrEmpty, isUndefinedOrNullOrEmpty, checkBoolean, checkBigNumber, toUtf8Bytes } from "mxw-libs-utils";
+import { mxw, nonFungibleToken as nfToken, utils } from "mxw-sdk-js";
 import { clog, levels } from "mxw-libs-clogger";
-import { errors } from "mxw-libs-errors";
 import { NonFungibleToken } from "mxw-sdk-js/dist/non-fungible-token";
 import { NonFungibleTokenItem } from "mxw-sdk-js/dist/non-fungible-token-item";
 
@@ -161,30 +160,37 @@ export default class NftService {
     public mintNftItem(data: any) {
         return Promise.resolve().then(() => {
             let vData: {
-                parentSymbol: string,
+                nftSymbol: string,
+                itemId: string,
                 bizName: string,
                 bizRegNo: string,
                 bizOwner: string,
                 licExpDate: string
             } = checkFormat({
-                parentSymbol: checkString,
+                nftSymbol: checkString,
+                itemId: allowNullOrEmpty(checkString),
                 bizName: checkString,
                 bizRegNo: checkString,
                 bizOwner: checkString,
                 licExpDate: checkString
             }, data);
 
-            let nftToken = new NonFungibleToken(vData.parentSymbol, this.issuer);
+            let nftToken = new NonFungibleToken(vData.nftSymbol, this.issuer);
+            let itemId: string = null;
+
+            if (isUndefinedOrNullOrEmpty(vData.itemId)) {
+                itemId = vData.nftSymbol + "_" + vData.bizRegNo;
+            } 
+
             const itemProp = {
-                symbol: vData.parentSymbol,
-                itemID: vData.parentSymbol + "_" + vData.bizRegNo,
+                symbol: vData.nftSymbol,
+                itemID: utils.sha256(toUtf8Bytes(itemId)),
                 properties: JSON.stringify({
                     bizName: vData.bizName,
                     bizRegNo: vData.bizRegNo,
-                    bizOwner: vData.bizOwner,
-                    licExpDate: vData.licExpDate
+                    bizOwner: vData.bizOwner
                 }),
-                metadata: vData.licExpDate                        
+                metadata: vData.licExpDate
             } as nfToken.NonFungibleTokenItem;
 
             clog(levels.NORMAL, "itemProp:", JSON.stringify(itemProp));
@@ -200,13 +206,24 @@ export default class NftService {
     public queryNftItem (data: any) {
         return Promise.resolve().then(() => {
             let vData: {
-                parentSymbol: string,
-                bizRegNo: string
+                nftSymbol: string,
+                bizRegNo: string,
+                itemId: string
             } = checkFormat({
-                parentSymbol: checkString,
-                bizRegNo: checkString
+                nftSymbol: checkString,
+                bizRegNo: allowNullOrEmpty(checkString),
+                itemId: allowNullOrEmpty(checkString)
             }, data);
-            return NonFungibleTokenItem.fromSymbol(vData.parentSymbol, vData.parentSymbol + "_" + vData.bizRegNo, this.issuer)
+
+            if (isUndefinedOrNullOrEmpty(vData.itemId)) {
+                vData.itemId = utils.sha256(toUtf8Bytes(vData.nftSymbol + "_" + vData.bizRegNo));
+            } else {
+                if (!String(vData.itemId).startsWith("0x")) {
+                    vData.itemId = utils.sha256(toUtf8Bytes(vData.itemId));
+                }
+            }
+
+            return NonFungibleTokenItem.fromSymbol(vData.nftSymbol, vData.itemId, this.issuer)
                 .then((nftItem) => {
                     return nftItem.getState().then((state) => {
                         clog(levels.NORMAL, "state:", JSON.stringify(state));
