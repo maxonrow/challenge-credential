@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  mock-api:
+    image: mock-api
+    command:
+      - npm
+      - -s
+      - start
+    ports:
+     - "17000:80"
+    environment:
+      - MYSQL_URL=mysql://dev:%40team%23Einnity1957@rm-3nsxw183v32a15o48.mysql.rds.aliyuncs.com/mxw_config
+      - WHITELIST=mxw1qrxglea6m8rzzadj60jwaesfdpks9p6uzyv8xw,mxw1ngx32epz5v5gyunepkarfh4lt0g6mqr79aq3ex
+      - CORS=*
+      - MAX_REQUEST=0
+
+  mock-scanner:
+    image: mock-scanner
+    command:
+      - npm
+      - -s
+      - start
+    environment:
+      - MYSQL_URL=mysql://dev:%40team%23Einnity1957@rm-3nsxw183v32a15o48.mysql.rds.aliyuncs.com/mxw_config
+      - BROADCAST_URL=http://devnet.louzok.com
+      - BLOCKCHAIN_ID=mxw-devnet
+      - SCANNER_NAME=Mock
