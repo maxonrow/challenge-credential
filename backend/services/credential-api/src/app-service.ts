@@ -355,7 +355,7 @@ export default class AppService {
                 this.entryPoint(this.server, "/mintNftItem", this.onMintNftItem, ["POST", "HEAD", "OPTIONS"], AuthType.NIL, true);
                 this.entryPoint(this.server, "/queryNftItem", this.onQueryNftItem, ["GET", "HEAD", "OPTIONS"], AuthType.NIL, true);
 
-                return this.server.listen(8080, () => {
+                return this.server.listen(8081, () => {
                     return resolve(this.server.url);
                 });
             }).catch(error => {

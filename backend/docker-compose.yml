@@ -1,28 +1,21 @@
 version: '2'
 
 services:
-  mock-api:
-    image: mock-api
+  credential-api:
+    image: credential-api:1.0.1
     command:
       - npm
       - -s
       - start
     ports:
-     - "17000:80"
+     - "8081:8081"
     environment:
-      - MYSQL_URL=mysql://dev:%40team%23Einnity1957@rm-3nsxw183v32a15o48.mysql.rds.aliyuncs.com/mxw_config
-      - WHITELIST=mxw1qrxglea6m8rzzadj60jwaesfdpks9p6uzyv8xw,mxw1ngx32epz5v5gyunepkarfh4lt0g6mqr79aq3ex
-      - CORS=*
-      - MAX_REQUEST=0
-
-  mock-scanner:
-    image: mock-scanner
-    command:
-      - npm
-      - -s
-      - start
-    environment:
-      - MYSQL_URL=mysql://dev:%40team%23Einnity1957@rm-3nsxw183v32a15o48.mysql.rds.aliyuncs.com/mxw_config
-      - BROADCAST_URL=http://devnet.louzok.com
-      - BLOCKCHAIN_ID=mxw-devnet
-      - SCANNER_NAME=Mock
+     - BLOCKCHAIN_URL=${BLOCKCHAIN_URL}
+     - BC_CONN_TIMEOUT=${BC_CONN_TIMEOUT}
+     - BLOCKCHAIN_ID=${BLOCKCHAIN_ID}
+     - JSON_ENC_PASSWORD=${JSON_ENC_PASSWORD}
+     - PROVIDER_ENC_JSON=${PROVIDER_ENC_JSON}
+     - ISSUER_ENC_JSON=${ISSUER_ENC_JSON}
+     - MIDDLEWARE_ENC_JSON=${MIDDLEWARE_ENC_JSON}
+      
+  
