@@ -1,22 +1,14 @@
-# ![https://maxonrow.com](https://maxonrow.com/images/maxonrow_gold.png)
+# Credential
 
-### Step 1 - Install Docker Compose
+## problem statement
 
-- Install Docker Compose [click here](https://docs.docker.com/compose/install/) (skip if you have this preinstalled)
+- Especially during pandemic, it's very hard to ensure the genuineness of everyone's credentials. Credentials verification is lack of transparency not tamper-proof.
+- Apart from test results (which could be easily compromised), governments have no way of verifying if a patient has had COVID-19 and is virus-free. What solution can provide tamper-proof while retrievable data only with the right credentials by leveraging Maxonrow's NFT?
 
-### Step 2 - Clone Challenge-Credential
+## example solution
 
-- Clone project `$ git clone https://github.com/maxonrow/challenge-credential.git`
+- A methodology or solution to store huge amount of incorruptible records of credentials
+- A methodology or solution to transform digital identity into decentralized identity
+- A methodology or solution to capture, record & verify special credentials accurately
 
-### Step 3 - Build & Run
-
-- open terminal, go to project root, run `cd backend`
-- run `docker build -t credential-api:1.0.1 -f services.credential-api.Dockerfile .`
-- run `docker-compose up`
-- you should see `Service is serving http://[::]:8081` output generated in your terminal when backend service starts up sucessfully
-
-### Step 4 - Checkout Article
-
-- checkout our [cookbook](https://medium.com/) on how to design & implement NFT.
-- please! remember to claps, follow & share. we will mint you something! You will find out soon!
-
+Nardo Lee & Teh Geok Tuan, Please help help update this readme file on how to startup and use your project, step by step. Thanks :)
