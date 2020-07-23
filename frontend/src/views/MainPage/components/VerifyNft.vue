@@ -38,12 +38,12 @@
           </div>
 
           <div class="field-section d-flex flex-column flex-sm-row">
-            <div class="field-name">Business Name:</div>
+            <div class="field-name">Patient Name:</div>
             <div class="field-result">{{ result.businessName }}</div>
           </div>
 
           <div class="field-section d-flex flex-column flex-sm-row">
-            <div class="field-name">Business Registration No:</div>
+            <div class="field-name">Patient Registration No:</div>
             <div class="field-result">{{ result.regNo }}</div>
           </div>
 

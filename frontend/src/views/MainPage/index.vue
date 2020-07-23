@@ -45,8 +45,8 @@ export default {
     return {
       tab: 0,
       items: [
-        // { id: 0, tab: 'Create NFT' },
-        // { id: 1, tab: 'Approve NFT' },
+        { id: 0, tab: 'Create NFT' },
+        { id: 1, tab: 'Approve NFT' },
         { id: 2, tab: 'Mint NFT' },
         { id: 3, tab: 'Verify NFT' },
         // { id: 4, tab: 'Endorse NFT' },

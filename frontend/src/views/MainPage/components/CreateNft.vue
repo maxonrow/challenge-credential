@@ -1,7 +1,7 @@
 <template>
   <div class="create-nft-section">
     <div class="create-nft-title title mb-6">
-      Create NFT
+      Create Center NFT
     </div>
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <div class="create-nft-body">
@@ -9,7 +9,7 @@
           <TextField
             v-model="form.name"
             :label="'Center Name'"
-            :placeholder="'Center Name (eg: ABC Credential 01)'"
+            :placeholder="'Center Name (eg: Hospital ABC)'"
             :mandatory="rules.name.required"
             :rules="rules.name"
           />
@@ -23,7 +23,7 @@
           <TextField
             v-model="form.metaData"
             :label="'Metadata'"
-            :placeholder="'Metadata (eg: ABC Credential 01)'"
+            :placeholder="'Metadata (eg: Hospital ABC)'"
             :rules="rules.metaData"
           />
         </div>
@@ -32,7 +32,7 @@
           <TextField
             v-model="form.properties"
             :label="'Properties'"
-            :placeholder="'Properties (eg: ABC Credential 01)'"
+            :placeholder="'Properties (eg: Hospital ABC)'"
             :rules="rules.properties"
           />
         </div>
@@ -40,7 +40,7 @@
 
       <div class="create-nft-action mt-2 mt-sm-4 text-center">
         <v-btn class="btn-cancel mx-1" :disabled="loading" @click="reset">Reset</v-btn>
-        <v-btn class="btn-common mx-1" :loading="loading" @click="passes(submit)">Submit Application</v-btn>
+        <v-btn class="btn-common mx-1" :loading="loading" @click="passes(submit)">Create</v-btn>
       </div>
     </ValidationObserver>
   </div>

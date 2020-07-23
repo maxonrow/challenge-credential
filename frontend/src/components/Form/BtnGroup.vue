@@ -1,44 +1,44 @@
 <template>
-  <v-btn-toggle v-model="toggleValue" mandatory>
-    <v-btn>
-      <v-icon>mdi-format-align-left</v-icon>
-    </v-btn>
-    <v-btn>
-      <v-icon>mdi-format-align-center</v-icon>
-    </v-btn>
-    <v-btn>
-      <v-icon>mdi-format-align-right</v-icon>
-    </v-btn>
-    <v-btn>
-      <v-icon>mdi-format-align-justify</v-icon>
-    </v-btn>
-  </v-btn-toggle>
+  <div class="btn-group d-flex flex-column">
+    <span>{{ label }}</span>
+    <v-btn-toggle class="mt-2" v-model="toggleValue" mandatory>
+      <v-btn width="50%" height="40">
+        <span>No</span>
+      </v-btn>
+      <v-btn width="50%" height="40">
+        <span>Yes</span>
+      </v-btn>
+    </v-btn-toggle>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
+    label: {
+      type: String,
+      default: '',
+    },
     value: {
       type: Number,
       default: 0,
     },
   },
   data() {
-    return {
-      toggleValue: null,
-    };
+    return {};
   },
   computed: {
     toggleValue: {
       get() {
-          return this.value;
+        return this.value;
       },
       set(value) {
-          this.$emit('input', value);
+        this.$emit('input', value);
       },
     },
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+</style>

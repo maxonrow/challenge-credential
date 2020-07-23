@@ -6,12 +6,7 @@
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <div class="create-nft-body">
         <div class="column">
-          <TextField
-            v-model="form.symbol"
-            :label="'Symbol'"
-            :placeholder="'Symbol (eg: ABC01)'"
-            :rules="rules.symbol"
-          />
+          <TextField v-model="form.symbol" :label="'Symbol'" :placeholder="'Symbol (eg: ABC01)'" :rules="rules.symbol" />
         </div>
 
         <div class="column">
@@ -32,14 +27,36 @@
           />
         </div>
 
-           <div class="column">
-         
-        </div>
+        <v-row>
+          <v-col cols="12" sm="4">
+            <div class="column">
+              <BtnGroup :label="'Burnable:'" v-model="form.burnable" />
+            </div>
+          </v-col>
+
+          <v-col cols="12" sm="4">
+            <div class="column">
+              <BtnGroup :label="'Transferable:'" v-model="form.transferable" />
+            </div>
+          </v-col>
+
+          <v-col cols="12" sm="4">
+            <div class="column">
+              <BtnGroup :label="'Modifiable:'" v-model="form.modifiable" />
+            </div>
+          </v-col>
+
+          <v-col cols="12" sm="4">
+            <div class="column">
+              <BtnGroup :label="'Public:'" v-model="form.pub" />
+            </div>
+          </v-col>
+        </v-row>
       </div>
 
       <div class="create-nft-action mt-2 mt-sm-4 text-center">
         <v-btn class="btn-cancel mx-1" :disabled="loading" @click="reset">Reset</v-btn>
-        <v-btn class="btn-common mx-1" :loading="loading" @click="passes(submit)">Submit Application</v-btn>
+        <v-btn class="btn-common mx-1" :loading="loading" @click="passes(submit)">Approve</v-btn>
       </div>
     </ValidationObserver>
   </div>
@@ -47,42 +64,34 @@
 
 <script>
 import TextField from '@/components/Form/TextField';
-import DateField from '@/components/Form/Date';
+import BtnGroup from '@/components/Form/BtnGroup';
 import { credential } from '@/api/credential';
 
 export default {
   components: {
     TextField,
-    DateField,
+    BtnGroup,
   },
   data() {
     return {
       loading: false,
       form: {
-        businessName: '',
-        regNo: '',
-        owner: '',
-        expiredDate: '',
-        itemId: '',
         symbol: '',
+        mintLimit: '',
+        transferLimit: '',
+        burnable: 0,
+        transferable: 0,
+        modifiable: 0,
+        pub: 0,
       },
       rules: {
-        businessName: {
-          required: true,
-        },
-        regNo: {
-          required: true,
-        },
-        owner: {
-          required: true,
-        },
-        expiredDate: {
-          required: true,
-        },
-        itemId: {
-          // required: true,
-        },
         symbol: {
+          required: true,
+        },
+        mintLimit: {
+          required: true,
+        },
+        transferLimit: {
           required: true,
         },
       },
@@ -91,16 +100,17 @@ export default {
   methods: {
     submit() {
       this.loading = true;
-      let data = {
-        nftSymbol: this.form.symbol,
-        itemId: this.form.itemId,
-        bizName: this.form.businessName,
-        bizRegNo: this.form.regNo,
-        bizOwner: this.form.owner,
-        licExpDate: this.form.expiredDate,
+      let form = {
+        symbol: this.form.symbol,
+        mintLimit: this.form.mintLimit,
+        transferLimit: this.form.transferLimit,
+        burnable: this.convertToBoolean(this.form.burnable),
+        transferable: this.convertToBoolean(this.form.transferable),
+        modifiable: this.convertToBoolean(this.form.modifiable),
+        pub: this.convertToBoolean(this.form.pub),
       };
       return credential
-        .mintNft(data)
+        .approveNft(form)
         .then(res => {
           if (res.ret == 0) {
             this.showSuccess('Successfully mint NFT');
@@ -119,15 +129,20 @@ export default {
     },
     reset() {
       let newForm = {
-        businessName: '',
-        regNo: '',
-        owner: '',
-        expiredDate: '',
-        itemId: '',
         symbol: '',
+        mintLimit: '',
+        transferLimit: '',
+        burnable: 0,
+        transferable: 0,
+        modifiable: 0,
+        pub: 0,
       };
-      this.form = { ...newForm };
+      this.form = newForm;
       this.resetValidation();
+    },
+    convertToBoolean(value) {
+      if (value == 0) return false;
+      else return true;
     },
   },
 };
