@@ -1,14 +1,16 @@
-# Credential
+# ![https://maxonrow.com](https://maxonrow.com/images/maxonrow_gold.png)
 
-## problem statement
+### Step 1 - Build & Run
 
-- Especially during pandemic, it's very hard to ensure the genuineness of everyone's credentials. Credentials verification is lack of transparency not tamper-proof.
-- Apart from test results (which could be easily compromised), governments have no way of verifying if a patient has had COVID-19 and is virus-free. What solution can provide tamper-proof while retrievable data only with the right credentials by leveraging Maxonrow's NFT?
+- open terminal, go to frontend folder directory, run `cd frontend`
+- run `npm i` in the terminal.
+- run `npm run serve`
+- you should see 
+  `App running at:`
+  `- Local: http://localhost:8080/ ` output generated in your terminal when compiled sucessfully
 
-## example solution
+### Step 2 - Expected Screen Result
 
-- A methodology or solution to store huge amount of incorruptible records of credentials
-- A methodology or solution to transform digital identity into decentralized identity
-- A methodology or solution to capture, record & verify special credentials accurately
+- click the `http://localhost:8080/` in the terminal.
+- you should see the following screen in the browser
 
-Nardo Lee & Teh Geok Tuan, Please help help update this readme file on how to startup and use your project, step by step. Thanks :)
