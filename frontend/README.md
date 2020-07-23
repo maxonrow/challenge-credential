@@ -4,13 +4,14 @@
 
 - open terminal, go to frontend folder directory, run `cd frontend`
 - run `npm i` in the terminal.
-- run `npm run serve`
+- run `npm run serve`.
 - you should see 
   `App running at:`
-  `- Local: http://localhost:8080/ ` output generated in your terminal when compiled sucessfully
+  `- Local: http://localhost:8080/ ` output generated in your terminal when compiled sucessfully.
 
 ### Step 2 - Expected Screen Result
 
 - click the `http://localhost:8080/` in the terminal.
-- you should see the following screen in the browser
+- you should see the following screen in the browser.
 
+# ![screenshot](https://github.com/maxonrow/challenge-credential/blob/development/frontend/Screenshot.png)
