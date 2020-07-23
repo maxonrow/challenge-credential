@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  credential-api:
+    image: credential-api:1.0.1
+    command:
+      - npm
+      - -s
+      - start
+    ports:
+     - "8081:8081"
+    environment:
+     - BLOCKCHAIN_URL=${BLOCKCHAIN_URL}
+     - BC_CONN_TIMEOUT=${BC_CONN_TIMEOUT}
+     - BLOCKCHAIN_ID=${BLOCKCHAIN_ID}
+     - JSON_ENC_PASSWORD=${JSON_ENC_PASSWORD}
+     - PROVIDER_ENC_JSON=${PROVIDER_ENC_JSON}
+     - ISSUER_ENC_JSON=${ISSUER_ENC_JSON}
+     - MIDDLEWARE_ENC_JSON=${MIDDLEWARE_ENC_JSON}
+      
+  

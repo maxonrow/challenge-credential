@@ -1,0 +1,19 @@
+:root {
+  --error-text-color: #ff5252;
+  --error-border-color: #ff5252;
+  --field-label-color: var(--grey-dark);
+  --main-bg: #f1f2f7;
+  --pg-title-color: var(--grey-light);
+  --sec-title-color: var(--grey);
+  --table-data-color: var(--grey);
+  --table-label-color: var(--grey-dark-1);
+
+  --blue-dark: #19397d;
+  --blue: #1a79f6; // btn blue
+  --grey: #808080; // field text grey (dark)
+  --red: #f20000; // btn red
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}

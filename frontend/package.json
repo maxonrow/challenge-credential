@@ -1,0 +1,53 @@
+{
+  "name": "credential",
+  "version": "0.0.6-rc.1",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^2.6.11",
+    "less": "^3.11.1",
+    "material-design-icons-iconfont": "^5.0.1",
+    "vee-validate": "^3.2.3",
+    "vue": "^2.6.11",
+    "vue-axios": "^2.1.5",
+    "vue-router": "^3.1.5",
+    "vuetify": "^2.2.28"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.4",
+    "@vue/cli-plugin-babel": "^3.12.1",
+    "@vue/cli-plugin-eslint": "^3.12.1",
+    "@vue/cli-service": "^3.12.1",
+    "@vue/eslint-config-prettier": "^5.1.0",
+    "babel-eslint": "^10.0.1",
+    "compression-webpack-plugin": "2.0.0",
+    "eslint": "^5.16.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-vue": "^5.0.0",
+    "filemanager-webpack-plugin": "2.0.5",
+    "less-loader": "^5.0.0",
+    "prettier": "^1.19.1",
+    "sass": "^1.25.0",
+    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-vuetify": "^0.6.3",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.3.0"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "printWidth": 130,
+    "semi": true,
+    "singleQuote": true,
+    "tslintIntegration": true,
+    "eslintIntegration": true,
+    "stylelintIntegration": true,
+    "ignorePath": ".gitignore"
+  }
+}
