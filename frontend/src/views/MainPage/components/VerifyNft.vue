@@ -5,9 +5,21 @@
     </div>
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <div class="verify-nft-body d-flex flex-sm-row flex-column">
-        <TextField v-model="form.itemId" class="flex-grow-1 mx-1" :label="'Item ID'" :rules="rules.itemId" />
+        <TextField
+          v-model="form.itemId"
+          class="flex-grow-1 mx-1"
+          :label="'Item ID'"
+          :placeholder="'Item ID (eg: P001)'"
+          :rules="rules.itemId"
+        />
 
-        <TextField v-model="form.symbol" class="flex-grow-1 mx-1" :label="'Symbol'" :rules="rules.symbol" />
+        <TextField
+          v-model="form.symbol"
+          class="flex-grow-1 mx-1"
+          :label="'Symbol'"
+          :placeholder="'Symbol (eg: BLC60)'"
+          :rules="rules.symbol"
+        />
       </div>
 
       <div class="verify-nft-action ml-3 text-center">
@@ -35,7 +47,7 @@
             <div class="field-result">{{ result.regNo }}</div>
           </div>
 
-          <div class="field-section d-flex flex-column flex-sm-row">
+          <!-- <div class="field-section d-flex flex-column flex-sm-row">
             <div class="field-name">Business Owner:</div>
             <div class="field-result">{{ result.owner }}</div>
           </div>
@@ -43,7 +55,7 @@
           <div class="field-section d-flex flex-column flex-sm-row">
             <div class="field-name">License Expire Date:</div>
             <div class="field-result">{{ result.expiredDate }}</div>
-          </div>
+          </div> -->
         </div>
       </fieldset>
     </div>

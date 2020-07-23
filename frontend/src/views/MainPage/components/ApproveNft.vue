@@ -1,40 +1,39 @@
 <template>
   <div class="create-nft-section">
     <div class="create-nft-title title mb-6">
-      Create NFT
+      Approve NFT
     </div>
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <div class="create-nft-body">
         <div class="column">
           <TextField
-            v-model="form.name"
-            :label="'Center Name'"
-            :placeholder="'Center Name (eg: ABC Credential 01)'"
-            :mandatory="rules.name.required"
-            :rules="rules.name"
-          />
-        </div>
-
-        <div class="column">
-          <TextField v-model="form.symbol" :label="'Symbol'" :placeholder="'Symbol (eg: ABC01)'" :rules="rules.symbol" />
-        </div>
-
-        <div class="column">
-          <TextField
-            v-model="form.metaData"
-            :label="'Metadata'"
-            :placeholder="'Metadata (eg: ABC Credential 01)'"
-            :rules="rules.metaData"
+            v-model="form.symbol"
+            :label="'Symbol'"
+            :placeholder="'Symbol (eg: ABC01)'"
+            :rules="rules.symbol"
           />
         </div>
 
         <div class="column">
           <TextField
-            v-model="form.properties"
-            :label="'Properties'"
-            :placeholder="'Properties (eg: ABC Credential 01)'"
-            :rules="rules.properties"
+            v-model="form.mintLimit"
+            :label="'Mint Limit'"
+            :placeholder="'Mint Limit (eg: 100)'"
+            :rules="rules.mintLimit"
           />
+        </div>
+
+        <div class="column">
+          <TextField
+            v-model="form.transferLimit"
+            :label="'Transfer Limit'"
+            :placeholder="'Transfer Limit (eg: 50)'"
+            :rules="rules.transferLimit"
+          />
+        </div>
+
+           <div class="column">
+         
         </div>
       </div>
 
@@ -48,32 +47,42 @@
 
 <script>
 import TextField from '@/components/Form/TextField';
+import DateField from '@/components/Form/Date';
 import { credential } from '@/api/credential';
 
 export default {
   components: {
     TextField,
+    DateField,
   },
   data() {
     return {
       loading: false,
       form: {
-        name: '',
+        businessName: '',
+        regNo: '',
+        owner: '',
+        expiredDate: '',
+        itemId: '',
         symbol: '',
-        metaData: '',
-        properties: '',
       },
       rules: {
-        name: {
+        businessName: {
           required: true,
+        },
+        regNo: {
+          required: true,
+        },
+        owner: {
+          required: true,
+        },
+        expiredDate: {
+          required: true,
+        },
+        itemId: {
+          // required: true,
         },
         symbol: {
-          required: true,
-        },
-        metaData: {
-          required: true,
-        },
-        properties: {
           required: true,
         },
       },
@@ -83,16 +92,18 @@ export default {
     submit() {
       this.loading = true;
       let data = {
-        name: this.form.name,
-        symbol: this.form.symbol,
-        metadata: this.form.metaData,
-        properties: this.form.properties,
+        nftSymbol: this.form.symbol,
+        itemId: this.form.itemId,
+        bizName: this.form.businessName,
+        bizRegNo: this.form.regNo,
+        bizOwner: this.form.owner,
+        licExpDate: this.form.expiredDate,
       };
       return credential
-        .createNft(data)
+        .mintNft(data)
         .then(res => {
           if (res.ret == 0) {
-            this.showSuccess('Successfully created NFT');
+            this.showSuccess('Successfully mint NFT');
             this.reset();
             this.loading = false;
           }
@@ -108,12 +119,14 @@ export default {
     },
     reset() {
       let newForm = {
-        name: '',
+        businessName: '',
+        regNo: '',
+        owner: '',
+        expiredDate: '',
+        itemId: '',
         symbol: '',
-        metaData: '',
-        properties: '',
       };
-      this.form = newForm;
+      this.form = { ...newForm };
       this.resetValidation();
     },
   },
