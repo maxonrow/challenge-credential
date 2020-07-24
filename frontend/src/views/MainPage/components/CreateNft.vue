@@ -95,6 +95,8 @@ export default {
             this.showSuccess('Successfully created NFT');
             this.reset();
             this.loading = false;
+            this.$emit('clearLog');
+            this.$emit('results', data);
           }
         })
         .catch(err => {
