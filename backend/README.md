@@ -2,11 +2,15 @@
 
 ### Step 1 - Install Docker Compose
 
-- Install Docker Compose [click here](https://docs.docker.com/compose/install/) (skip if you have this preinstalled)
-
-### Step 2 - Clone Challenge-Credential
-
 - Clone project `$ git clone https://github.com/maxonrow/challenge-credential.git`
+
+### Step 2 - Clone project
+
+- Go to directory `cd challenge-credential/backend/services/credential-api`
+
+### Step 3 - Build project
+
+- Go to directory `cd challenge-credential/backend/services/credential-api`
 
 ### Step 3 - Build & Run
 
