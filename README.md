@@ -46,4 +46,4 @@
 
 ### Step 8 - Expected output
 
-- ![screenshot](frontend/Screenshot.png)
+- ![screenshot](frontend/credentials.png)
