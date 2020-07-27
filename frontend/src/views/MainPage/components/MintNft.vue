@@ -120,6 +120,7 @@ export default {
             this.showSuccess('Successfully mint NFT');
             this.reset();
             this.loading = false;
+            this.$emit('results', data);
           }
         })
         .catch(err => {
