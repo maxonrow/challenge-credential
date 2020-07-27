@@ -161,36 +161,22 @@ export default class NftService {
         return Promise.resolve().then(() => {
             let vData: {
                 nftSymbol: string,
-                itemId: string,
-                bizName: string,
-                bizRegNo: string,
-                bizOwner: string,
-                licExpDate: string
+                itemId: string
             } = checkFormat({
                 nftSymbol: checkString,
-                itemId: allowNullOrEmpty(checkString),
-                bizName: checkString,
-                bizRegNo: checkString,
-                bizOwner: checkString,
-                licExpDate: checkString
+                itemId: checkString
             }, data);
 
             let nftToken = new NonFungibleToken(vData.nftSymbol, this.issuer);
-            if (isUndefinedOrNullOrEmpty(vData.itemId)) {
-                vData.itemId = utils.sha256(toUtf8Bytes(vData.nftSymbol + "_" + vData.bizRegNo));
-            } else if (!String(vData.itemId).startsWith("0x")) {
+            if (!String(vData.itemId).startsWith("0x")) {
                 vData.itemId = utils.sha256(toUtf8Bytes(vData.itemId));
             }
 
             const itemProp = {
                 symbol: vData.nftSymbol,
                 itemID: vData.itemId,
-                properties: JSON.stringify({
-                    bizName: vData.bizName,
-                    bizRegNo: vData.bizRegNo,
-                    bizOwner: vData.bizOwner
-                }),
-                metadata: vData.licExpDate
+                properties: JSON.stringify(data.properties),
+                metadata: JSON.stringify(data.metadata)
             } as nfToken.NonFungibleTokenItem;
 
             clog(levels.NORMAL, "itemProp:", JSON.stringify(itemProp));
@@ -207,21 +193,16 @@ export default class NftService {
         return Promise.resolve().then(() => {
             let vData: {
                 nftSymbol: string,
-                bizRegNo: string,
                 itemId: string
             } = checkFormat({
                 nftSymbol: checkString,
-                bizRegNo: allowNullOrEmpty(checkString),
                 itemId: allowNullOrEmpty(checkString)
             }, data);
-
-            if (isUndefinedOrNullOrEmpty(vData.itemId)) {
-                vData.itemId = utils.sha256(toUtf8Bytes(vData.nftSymbol + "_" + vData.bizRegNo));
-            } else {
-                if (!String(vData.itemId).startsWith("0x")) {
-                    vData.itemId = utils.sha256(toUtf8Bytes(vData.itemId));
-                }
+            
+            if (!String(vData.itemId).startsWith("0x")) {
+                vData.itemId = utils.sha256(toUtf8Bytes(vData.itemId));
             }
+            
 
             return NonFungibleTokenItem.fromSymbol(vData.nftSymbol, vData.itemId, this.issuer)
                 .then((nftItem) => {
@@ -237,35 +218,19 @@ export default class NftService {
         return Promise.resolve().then(() => {
             let eData: {
                 nftSymbol: string,
-                bizRegNo: string,
-                itemId: string,
-                memo: string,
-                metadata: string
+                itemId: string
             } = checkFormat({
                 nftSymbol: checkString,
                 bizRegNo: allowNullOrEmpty(checkString),
-                itemId: allowNullOrEmpty(checkString),
-                memo: allowNullOrEmpty(checkString),
-                metadata: allowNullOrEmpty(checkString)
+                itemId: allowNullOrEmpty(checkString)
             }, data);
 
-            if (isUndefinedOrNullOrEmpty(eData.itemId)) {
-                eData.itemId = utils.sha256(toUtf8Bytes(eData.nftSymbol + "_" + eData.bizRegNo));
-            } else {
-                if (!String(eData.itemId).startsWith("0x")) {
-                    eData.itemId = utils.sha256(toUtf8Bytes(eData.itemId));
-                }
-            }
-
-            let memo = {};
-            if(!isUndefinedOrNullOrEmpty(eData.memo)) {
-                memo = {
-                    memo: eData.memo
-                };
+            if (!String(eData.itemId).startsWith("0x")) {
+                eData.itemId = utils.sha256(toUtf8Bytes(eData.itemId));
             }
 
             let nftItem = new NonFungibleTokenItem(eData.nftSymbol, eData.itemId, this.issuer);
-            return nftItem.endorse(eData.metadata, memo)
+            return nftItem.endorse(JSON.stringify(data.metadata), data.memo)
                 .then((receipt) => {
                     clog(levels.NORMAL, "endorse receipt:", JSON.stringify(receipt));
                     return receipt;
