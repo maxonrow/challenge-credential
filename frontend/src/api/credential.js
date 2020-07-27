@@ -13,4 +13,7 @@ export const credential = {
   queryNft(params) {
     return API.get('/queryNftItem', params);
   },
+  endorseNft(data) {
+    return API.post('/endorseNft', data);
+  },
 };

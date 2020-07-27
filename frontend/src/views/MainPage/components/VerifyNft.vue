@@ -39,23 +39,13 @@
 
           <div class="field-section d-flex flex-column flex-sm-row">
             <div class="field-name">Patient Name:</div>
-            <div class="field-result">{{ result.businessName }}</div>
+            <div class="field-result">{{ result.patientName }}</div>
           </div>
 
           <div class="field-section d-flex flex-column flex-sm-row">
             <div class="field-name">Patient Registration No:</div>
             <div class="field-result">{{ result.regNo }}</div>
           </div>
-
-          <!-- <div class="field-section d-flex flex-column flex-sm-row">
-            <div class="field-name">Business Owner:</div>
-            <div class="field-result">{{ result.owner }}</div>
-          </div>
-
-          <div class="field-section d-flex flex-column flex-sm-row">
-            <div class="field-name">License Expire Date:</div>
-            <div class="field-result">{{ result.expiredDate }}</div>
-          </div> -->
         </div>
       </fieldset>
     </div>
@@ -78,10 +68,8 @@ export default {
         symbol: '',
       },
       result: {
-        businessName: '',
+        patientName: '',
         regNo: '',
-        owner: '',
-        expiredDate: '',
         itemId: '',
       },
       rules: {
@@ -108,12 +96,11 @@ export default {
         .then(res => {
           if (res.ret == 0) {
             const { metadata, properties, id } = res.data;
-            const { bizName, bizOwner, bizRegNo } = JSON.parse(properties);
-            this.result.expiredDate = metadata;
+            const { centerName } = JSON.parse(properties);
+            const { bedCapacity } = JSON.parse(metadata);
             this.result.itemId = id;
-            this.result.businessName = bizName;
-            this.result.owner = bizOwner;
-            this.result.regNo = bizRegNo;
+            this.result.patientName = centerName;
+            this.result.regNo = bedCapacity;
             this.loading = false;
           }
         })
@@ -131,10 +118,8 @@ export default {
         symbol: '',
       };
       let newResult = {
-        businessName: '',
+        patientName: '',
         regNo: '',
-        owner: '',
-        expiredDate: '',
         itemId: '',
       };
 

@@ -10,16 +10,19 @@
         <v-tabs-items v-model="tab">
           <v-tab-item v-for="item in items" :key="item.tab">
             <div v-if="item.id == 0" class="pa-6">
-              <CreateNFT ref="createNft" @results="createLog = $event"></CreateNFT>
+              <CreateNFT @results="createLog = $event"></CreateNFT>
             </div>
             <div v-if="item.id == 1" class="pa-6">
-              <ApproveNFT ref="approveNft" @results="approveLog = $event"></ApproveNFT>
+              <ApproveNFT @results="approveLog = $event"></ApproveNFT>
             </div>
             <div v-if="item.id == 2" class="pa-6">
-              <MintNFT ref="mintNft" @results="mintLog = $event"></MintNFT>
+              <MintNFT @results="mintLog = $event"></MintNFT>
             </div>
             <div v-if="item.id == 3" class="pa-6">
-              <VerifyNFT ref="verifyNft"></VerifyNFT>
+              <VerifyNFT></VerifyNFT>
+            </div>
+            <div v-if="item.id == 4" class="pa-6">
+              <EndorseNFT></EndorseNFT>
             </div>
           </v-tab-item>
         </v-tabs-items>
@@ -55,7 +58,7 @@
 
             <div class="field-section d-flex flex-column flex-sm-row">
               <div class="field-name">Patient Name:</div>
-              <div class="field-result">{{ !isEmpty(mintLog) ? mintLog.bizName : '-' }}</div>
+              <div class="field-result">{{ !isEmpty(mintLog) ? mintLog.properties.centerName : '-' }}</div>
             </div>
 
             <div class="field-section d-flex flex-column flex-sm-row">
@@ -74,6 +77,7 @@ import CreateNFT from './components/CreateNft';
 import ApproveNFT from './components/ApproveNft';
 import MintNFT from './components/MintNft';
 import VerifyNFT from './components/VerifyNft';
+import EndorseNFT from './components/EndorseNft';
 
 export default {
   components: {
@@ -81,6 +85,7 @@ export default {
     ApproveNFT,
     MintNFT,
     VerifyNFT,
+    EndorseNFT,
   },
   data() {
     return {
@@ -90,7 +95,7 @@ export default {
         { id: 1, tab: 'Approve NFT' },
         { id: 2, tab: 'Mint NFT' },
         { id: 3, tab: 'Verify NFT' },
-        // { id: 4, tab: 'Endorse NFT' },
+        { id: 4, tab: 'Endorse NFT' },
       ],
       createLog: null,
       approveLog: null,

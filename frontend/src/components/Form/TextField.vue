@@ -15,10 +15,9 @@
         :label="label"
         :placeholder="placeholder"
         :outlined="outlined"
-        :solo="solo"
+        single-line
         :clearable="clearable"
         :disabled="disabled"
-        :readonly="readOnly"
         :error-messages="errors[0]"
         @click:clear="$emit('clearAction')"
         @blur="$emit('blur')"
@@ -45,17 +44,13 @@ export default {
       type: String,
       default: '',
     },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
     mode: {
       type: String,
       default: 'lazy',
     },
     outlined: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     rules: {
       type: Object,
@@ -65,7 +60,7 @@ export default {
     },
     solo: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     value: {
       type: [String, Number],

@@ -7,11 +7,10 @@
       <div class="create-nft-body">
         <div class="column">
           <TextField
-            v-model="form.name"
+            v-model="form.centerName"
             :label="'Center Name'"
             :placeholder="'Center Name (eg: Hospital ABC)'"
-            :mandatory="rules.name.required"
-            :rules="rules.name"
+            :rules="rules.centerName"
           />
         </div>
 
@@ -24,7 +23,6 @@
             v-model="form.metaData"
             :label="'Metadata'"
             :placeholder="'Metadata (eg: Hospital ABC)'"
-            :rules="rules.metaData"
           />
         </div>
 
@@ -33,7 +31,6 @@
             v-model="form.properties"
             :label="'Properties'"
             :placeholder="'Properties (eg: Hospital ABC)'"
-            :rules="rules.properties"
           />
         </div>
       </div>
@@ -58,22 +55,16 @@ export default {
     return {
       loading: false,
       form: {
-        name: '',
+        centerName: '',
         symbol: '',
         metaData: '',
         properties: '',
       },
       rules: {
-        name: {
+        centerName: {
           required: true,
         },
         symbol: {
-          required: true,
-        },
-        metaData: {
-          required: true,
-        },
-        properties: {
           required: true,
         },
       },
@@ -83,7 +74,7 @@ export default {
     submit() {
       this.loading = true;
       let data = {
-        name: this.form.name,
+        name: this.form.centerName,
         symbol: this.form.symbol,
         metadata: this.form.metaData,
         properties: this.form.properties,
@@ -109,7 +100,7 @@ export default {
     },
     reset() {
       let newForm = {
-        name: '',
+        centerName: '',
         symbol: '',
         metaData: '',
         properties: '',
