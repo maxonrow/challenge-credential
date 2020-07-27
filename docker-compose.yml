@@ -2,7 +2,7 @@ version: '3'
 
 services:
   credential-backend:
-    image: credential-api:1.0.1
+    build: ./backend/
     command:
       - npm
       - -s
@@ -22,7 +22,7 @@ services:
         {"address":"mxw1md4u2zxz2ne5vsf9t4uun7q2k0nc3ly5g22dne","id":"5296203c-ebf7-4276-a0f0-a8a88e72fdf4","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"892a168922069578c9168fefa27d526c"},"ciphertext":"27f2d7e50216c69cfe7941d0cbb389a473d6959a6b7f86a70b965f7c863c6ff2","kdf":"scrypt","kdfparams":{"salt":"0b66e1374afcf500f91712f77cf2986135982605a8d43331b8f65c77da9c11c6","n":131072,"dklen":32,"p":1,"r":8},"mac":"9c1a0d298f9a3ef09667fbf827b929806996251a1476cc7bac04bc97d0ae4bde"},"x-mxw":{"client":"mxw-sdk","filename":"UTC--2020-03-26T09-46-08.0Z--mxw1md4u2zxz2ne5vsf9t4uun7q2k0nc3ly5g22dne","mnemonicCounter":"71600c0d32a87023d5ea81cb068e88bf","mnemonicCiphertext":"c9c5c33461ed012038b78489a19bd5267324a7ae93f544ba6a67f016c35a5015","path":"m/44'/376'/0'/0/0","version":"0.1"}}  
 
   credential-frontend:
-    image: meds-admin-portal:1.0.1
+    build: ./frontend/
     ports:
      - "8080:80"
   
