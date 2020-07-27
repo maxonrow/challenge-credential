@@ -1,10 +1,13 @@
-FROM nginx:1.15.8-alpine as builder
-WORKDIR /usr/share/nginx/html/
-ADD ./dist /usr/share/nginx/html/
+FROM node:10.13.0-alpine as builder
+WORKDIR /frontend
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
 
 FROM nginx:1.15.8-alpine
 WORKDIR /
-COPY --from=builder /usr/share/nginx/html /usr/share/nginx/html
+COPY --from=builder /frontend/dist /usr/share/nginx/html
 
 # Copy the respective nginx configuration files
 COPY nginx.conf /etc/nginx/nginx.conf
