@@ -108,6 +108,19 @@ export default class AppService {
         });
     }
 
+    private onEndorseNft(req: restify.Request, res: restify.Response, next: restify.Next) {
+        return Promise.resolve().then(() => {
+            return NftService.Instance.endorseNft({
+                ...req.body
+            }).then((result) => {
+                res.json({
+                    ret: "0",
+                    data: result
+                })
+            })
+        })
+    }
+
     /**
      * Serve the health probe
      * 
@@ -354,6 +367,7 @@ export default class AppService {
                 this.entryPoint(this.server, "/approveNft", this.onApproveNft, ["POST", "HEAD", "OPTIONS"], AuthType.NIL, true);
                 this.entryPoint(this.server, "/mintNftItem", this.onMintNftItem, ["POST", "HEAD", "OPTIONS"], AuthType.NIL, true);
                 this.entryPoint(this.server, "/queryNftItem", this.onQueryNftItem, ["GET", "HEAD", "OPTIONS"], AuthType.NIL, true);
+                this.entryPoint(this.server, "/endorseNft", this.onEndorseNft, ["POST", "HEAD", "OPTIONS"], AuthType.NIL, true);
 
                 return this.server.listen(8081, () => {
                     return resolve(this.server.url);

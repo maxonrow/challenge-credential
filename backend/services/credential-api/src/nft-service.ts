@@ -233,6 +233,46 @@ export default class NftService {
         });
     }
 
+    public endorseNft(data: any) {
+        return Promise.resolve().then(() => {
+            let eData: {
+                nftSymbol: string,
+                bizRegNo: string,
+                itemId: string,
+                memo: string,
+                metadata: string
+            } = checkFormat({
+                nftSymbol: checkString,
+                bizRegNo: allowNullOrEmpty(checkString),
+                itemId: allowNullOrEmpty(checkString),
+                memo: allowNullOrEmpty(checkString),
+                metadata: allowNullOrEmpty(checkString)
+            }, data);
+
+            if (isUndefinedOrNullOrEmpty(eData.itemId)) {
+                eData.itemId = utils.sha256(toUtf8Bytes(eData.nftSymbol + "_" + eData.bizRegNo));
+            } else {
+                if (!String(eData.itemId).startsWith("0x")) {
+                    eData.itemId = utils.sha256(toUtf8Bytes(eData.itemId));
+                }
+            }
+
+            let memo = {};
+            if(!isUndefinedOrNullOrEmpty(eData.memo)) {
+                memo = {
+                    memo: eData.memo
+                };
+            }
+
+            let nftItem = new NonFungibleTokenItem(eData.nftSymbol, eData.itemId, this.issuer);
+            return nftItem.endorse(eData.metadata, memo)
+                .then((receipt) => {
+                    clog(levels.NORMAL, "endorse receipt:", JSON.stringify(receipt));
+                    return receipt;
+                });
+        });
+    }
+
     private signAndSendNftTransaction(symbol: string, callback: any, overrides?: any) {
         return Promise.resolve().then(() => {
             return callback(symbol, this.provider, overrides)

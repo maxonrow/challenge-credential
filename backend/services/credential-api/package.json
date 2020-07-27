@@ -21,7 +21,7 @@
     "mxw-libs-database": "^1.0.17",
     "mxw-libs-errors": "^1.0.5",
     "mxw-libs-utils": "^1.0.27",
-    "mxw-sdk-js": "^0.8.4",
+    "mxw-sdk-js": "^0.8.6",
     "process": "^0.11.10",
     "restify": "^8.5.1",
     "restify-cors-middleware": "^1.1.1",
