@@ -13,6 +13,12 @@
               <CreateNFT ref="createNft"></CreateNFT>
             </div>
             <div v-if="item.id == 1" class="pa-6">
+              <ApproveNFT ref="approveNft"></ApproveNFT>
+            </div>
+            <div v-if="item.id == 2" class="pa-6">
+              <MintNFT ref="mintNft"></MintNFT>
+            </div>
+            <div v-if="item.id == 3" class="pa-6">
               <VerifyNFT ref="verifyNft"></VerifyNFT>
             </div>
           </v-tab-item>
@@ -24,26 +30,33 @@
 
 <script>
 import CreateNFT from './components/CreateNft';
+import ApproveNFT from './components/ApproveNft';
+import MintNFT from './components/MintNft';
 import VerifyNFT from './components/VerifyNft';
 
 export default {
   components: {
     CreateNFT,
+    ApproveNFT,
+    MintNFT,
     VerifyNFT,
   },
   data() {
     return {
       tab: 0,
       items: [
-        { id: 0, tab: 'Create & Mint NFT' },
-        { id: 1, tab: 'Verify NFT' },
+        { id: 0, tab: 'Create NFT' },
+        { id: 1, tab: 'Approve NFT' },
+        { id: 2, tab: 'Mint NFT' },
+        { id: 3, tab: 'Verify NFT' },
+        // { id: 4, tab: 'Endorse NFT' },
       ],
     };
   },
   methods: {
     clearValidation() {
-      if (this.tab == 0) this.$refs.verifyNft[0].resetValidation();
-      else this.$refs.createNft[0].resetValidation();
+      // if (this.tab == 0) this.$refs.verifyNft[0].resetValidation();
+      // else this.$refs.mintNft[0].resetValidation();
     },
   },
 };

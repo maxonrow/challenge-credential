@@ -1,48 +1,46 @@
 <template>
   <div class="create-nft-section">
     <div class="create-nft-title title mb-6">
-      Apply Business License Application
+      Create Center NFT
     </div>
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <div class="create-nft-body">
         <div class="column">
           <TextField
-            v-model="form.businessName"
-            :label="'Business Name'"
-            :mandatory="rules.businessName.required"
-            :rules="rules.businessName"
+            v-model="form.name"
+            :label="'Center Name'"
+            :placeholder="'Center Name (eg: Hospital ABC)'"
+            :mandatory="rules.name.required"
+            :rules="rules.name"
+          />
+        </div>
+
+        <div class="column">
+          <TextField v-model="form.symbol" :label="'Symbol'" :placeholder="'Symbol (eg: ABC01)'" :rules="rules.symbol" />
+        </div>
+
+        <div class="column">
+          <TextField
+            v-model="form.metaData"
+            :label="'Metadata'"
+            :placeholder="'Metadata (eg: Hospital ABC)'"
+            :rules="rules.metaData"
           />
         </div>
 
         <div class="column">
           <TextField
-            v-model="form.regNo"
-            :label="'Business Registration No.'"
-            :mandatory="rules.regNo.required"
-            :rules="rules.regNo"
+            v-model="form.properties"
+            :label="'Properties'"
+            :placeholder="'Properties (eg: Hospital ABC)'"
+            :rules="rules.properties"
           />
-        </div>
-
-        <div class="column">
-          <TextField v-model="form.owner" :label="'Business Owner'" :mandatory="rules.owner.required" :rules="rules.owner" />
-        </div>
-
-        <div class="column">
-          <DateField v-model="form.expiredDate" :label="'License Expire Date'" :rules="rules.expiredDate" />
-        </div>
-
-        <div class="column">
-          <TextField v-model="form.itemId" :label="'Item ID'" :mandatory="rules.owner.required" :rules="rules.itemId" />
-        </div>
-
-        <div class="column">
-          <TextField v-model="form.symbol" :label="'Symbol'" :mandatory="rules.owner.required" :rules="rules.symbol" />
         </div>
       </div>
 
       <div class="create-nft-action mt-2 mt-sm-4 text-center">
         <v-btn class="btn-cancel mx-1" :disabled="loading" @click="reset">Reset</v-btn>
-        <v-btn class="btn-common mx-1" :loading="loading" @click="passes(submit)">Submit Application</v-btn>
+        <v-btn class="btn-common mx-1" :loading="loading" @click="passes(submit)">Create</v-btn>
       </div>
     </ValidationObserver>
   </div>
@@ -50,42 +48,32 @@
 
 <script>
 import TextField from '@/components/Form/TextField';
-import DateField from '@/components/Form/Date';
 import { credential } from '@/api/credential';
 
 export default {
   components: {
     TextField,
-    DateField,
   },
   data() {
     return {
       loading: false,
       form: {
-        businessName: '',
-        regNo: '',
-        owner: '',
-        expiredDate: '',
-        itemId: '',
+        name: '',
         symbol: '',
+        metaData: '',
+        properties: '',
       },
       rules: {
-        businessName: {
+        name: {
           required: true,
-        },
-        regNo: {
-          required: true,
-        },
-        owner: {
-          required: true,
-        },
-        expiredDate: {
-          required: true,
-        },
-        itemId: {
-          // required: true,
         },
         symbol: {
+          required: true,
+        },
+        metaData: {
+          required: true,
+        },
+        properties: {
           required: true,
         },
       },
@@ -95,18 +83,16 @@ export default {
     submit() {
       this.loading = true;
       let data = {
-        nftSymbol: this.form.symbol,
-        itemId: this.form.itemId,
-        bizName: this.form.businessName,
-        bizRegNo: this.form.regNo,
-        bizOwner: this.form.owner,
-        licExpDate: this.form.expiredDate,
+        name: this.form.name,
+        symbol: this.form.symbol,
+        metadata: this.form.metaData,
+        properties: this.form.properties,
       };
       return credential
-        .mintNft(data)
+        .createNft(data)
         .then(res => {
           if (res.ret == 0) {
-            this.showSuccess('Successfully mint NFT');
+            this.showSuccess('Successfully created NFT');
             this.reset();
             this.loading = false;
           }
@@ -122,14 +108,12 @@ export default {
     },
     reset() {
       let newForm = {
-        businessName: '',
-        regNo: '',
-        owner: '',
-        expiredDate: '',
-        itemId: '',
+        name: '',
         symbol: '',
+        metaData: '',
+        properties: '',
       };
-      this.form = { ...newForm };
+      this.form = newForm;
       this.resetValidation();
     },
   },

@@ -41,10 +41,6 @@ export default {
       type: String,
       default: '',
     },
-    mandatory: {
-      type: Boolean,
-      default: false,
-    },
     placeholder: {
       type: String,
       default: '',
