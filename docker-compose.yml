@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  credential-backend:
+    image: credential-api:1.0.1
+    command:
+      - npm
+      - -s
+      - start
+    ports:
+     - "8081:8081"
+    environment:
+      BLOCKCHAIN_URL: "http://maxonrow:26657"
+      BC_CONN_TIMEOUT: "60000"
+      BLOCKCHAIN_ID: "maxonrow-chain"
+      JSON_ENC_PASSWORD: "any strong password"
+      PROVIDER_ENC_JSON: >-
+        {"address":"mxw1f8r0k5p7s85kv7jatwvmpartyy2j0s20y0p0yk","id":"83aaf3a8-1309-4911-a75e-8a170b388969","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"9289a54c3237ffc2274f700b65ebfd57"},"ciphertext":"6575225f4d76e7d9420be54f0fa0ce3b91d8dcee43906e6f3c6abc0c7a45d844","kdf":"scrypt","kdfparams":{"salt":"d7e3c52249c916857538e6077faefcd347000723480a03e436079bd7320348b7","n":131072,"dklen":32,"p":1,"r":8},"mac":"01238ef572490dbdd65623af4fef3ba720c3bc70a86ea3c89cbed9b3ee5189e0"},"x-mxw":{"client":"mxw-sdk","filename":"UTC--2020-03-26T09-46-05.0Z--mxw1f8r0k5p7s85kv7jatwvmpartyy2j0s20y0p0yk","mnemonicCounter":"8c23848269a00983440b65e961769f3c","mnemonicCiphertext":"395fdfa52e9a0b6044de449450ad448f6f6f9e9410b2c8633c0f7528971ce1ca","path":"m/44'/376'/0'/0/0","version":"0.1"}}
+      ISSUER_ENC_JSON: >-
+        {"address":"mxw1k9sxz0h3yeh0uzmxet2rmsj7xe5zg54eq7vhla","id":"f9204b9f-d51f-4e00-bd0e-0636471ea032","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"40e34bf22b6b542375f821584ebf4373"},"ciphertext":"22a3e28305294c9a94b1988907254b1cfd488717a41a10ae3711ee707951d4c7","kdf":"scrypt","kdfparams":{"salt":"2e0fd320467f707910ade4216dc392ea8a289f6d2a6e191b18a76f7f17b01272","n":131072,"dklen":32,"p":1,"r":8},"mac":"5d076300416b666d3a4bf966abdac69df2d91100bf04ab5dd746c8c45b783299"},"x-mxw":{"client":"mxw-sdk","filename":"UTC--2020-03-26T09-46-06.0Z--mxw1k9sxz0h3yeh0uzmxet2rmsj7xe5zg54eq7vhla","mnemonicCounter":"867c34991b1f529c26d83ebed14eb51a","mnemonicCiphertext":"800b414c66855ffaf64d9c918caf81dc00b4f885a3f1aaf3b1f1c3dfc71e8414","path":"m/44'/376'/0'/0/0","version":"0.1"}}
+      MIDDLEWARE_ENC_JSON: >-
+        {"address":"mxw1md4u2zxz2ne5vsf9t4uun7q2k0nc3ly5g22dne","id":"5296203c-ebf7-4276-a0f0-a8a88e72fdf4","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"892a168922069578c9168fefa27d526c"},"ciphertext":"27f2d7e50216c69cfe7941d0cbb389a473d6959a6b7f86a70b965f7c863c6ff2","kdf":"scrypt","kdfparams":{"salt":"0b66e1374afcf500f91712f77cf2986135982605a8d43331b8f65c77da9c11c6","n":131072,"dklen":32,"p":1,"r":8},"mac":"9c1a0d298f9a3ef09667fbf827b929806996251a1476cc7bac04bc97d0ae4bde"},"x-mxw":{"client":"mxw-sdk","filename":"UTC--2020-03-26T09-46-08.0Z--mxw1md4u2zxz2ne5vsf9t4uun7q2k0nc3ly5g22dne","mnemonicCounter":"71600c0d32a87023d5ea81cb068e88bf","mnemonicCiphertext":"c9c5c33461ed012038b78489a19bd5267324a7ae93f544ba6a67f016c35a5015","path":"m/44'/376'/0'/0/0","version":"0.1"}}  
+
+  credential-frontend:
+    image: meds-admin-portal:1.0.1
+    ports:
+     - "8080:80"
+  
