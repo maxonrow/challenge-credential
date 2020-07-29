@@ -10,7 +10,7 @@ services:
     ports:
      - "8081:8081"
     environment:
-      BLOCKCHAIN_URL: "http://127.0.0.1:26657"
+      BLOCKCHAIN_URL: "http://maxonrow:26657"
       BC_CONN_TIMEOUT: "60000"
       BLOCKCHAIN_ID: "maxonrow-chain"
       JSON_ENC_PASSWORD: "any strong password"
@@ -27,8 +27,9 @@ services:
      - "8080:80"
   
   blockchain-service:
+    container_name: maxonrow
     build: ./maxonrow-docker/
-    image: maxonrow
+    image: maxonrow:latest
     ports:
     - "26656:26656"
     - "26657:26657"
