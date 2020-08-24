@@ -1,11 +1,12 @@
 # ![https://maxonrow.com](https://maxonrow.com/images/maxonrow_gold.png)
 
-## Credential
+## Credentials and Certificate issuance
 
 ## Problem Statement
 
 - Especially during pandemic, it's very hard to ensure the genuineness of everyone's credentials. Credentials verification is lack of transparency not tamper-proof.
-- Apart from test results (which could be easily compromised), governments have no way of verifying if a patient has had COVID-19 and is virus-free. What solution can provide tamper-proof while retrievable data only with the right credentials by leveraging Maxonrow's NFT?
+- Apart from test results (which could be easily compromised), governments have no way of verifying if a patient has had COVID-19 and is virus-free. What solution can provide tamper-proof while retrievable data only with the right credentials by leveraging Maxonrow's NFT? 
+- Help us build a solution that can help governments quickly retrieve verifiable data.
 
 ## Example Solution
 
