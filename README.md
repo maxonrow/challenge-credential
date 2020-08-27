@@ -1,6 +1,6 @@
 # ![https://maxonrow.com](https://maxonrow.com/images/maxonrow_gold.png)
 
-## Credentials and Certificate issuance
+## Credential and Certificate issuance
 
 ## Problem Statement
 
