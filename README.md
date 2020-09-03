@@ -1,4 +1,4 @@
-# ![https://maxonrow.com](https://maxonrow.com/images/maxonrow_gold.png)
+# ![https://maxonrow.com](https://raw.githubusercontent.com/maxonrow/docs/master/logo.png)
 
 ## Credential and Certificate issuance
 
@@ -32,23 +32,33 @@ Verifying a person's COVID-19 test result can be challenging, especially when it
 
 - Go to directory `cd challenge-credential/backend/services/credential-api`
 
-### Step 4 - Build & run backend
+### Step 4 - Source & export environment path
+
+- Go to directory & type `source env/env.cfg` 
+- or you can export manually 
+```bash
+export BLOCKCHAIN_URL="http://127.0.0.1:26657"
+export BC_CONN_TIMEOUT=60000
+export BLOCKCHAIN_ID="maxonrow-chain"
+```
+
+### Step 5 - Build & run backend
 
 - run `npm i` & subsequently with `npm run dev` & you should see `Service is serving http://localhost:8081`
 
-### Step 5 - Navigate to frontend
+### Step 6 - Navigate to frontend
 
 - Go to directory `cd challenge-credential/frontend`
 
-### Step 6 - Build & run frontend
+### Step 7 - Build & run frontend
 
 - run `npm i` & subsequently with `npm run serve` & you should see `App running at: Local: http://localhost:8082`
 
-### Step 7 - Checkout article
+### Step 8 - Checkout article
 
 - checkout our [cookbook](https://medium.com/) on how to design & implement NFT.
 - please! remember to claps, follow & share. we will mint you something! You will find out soon!
 
-### Step 8 - Expected output
+### Step 9 - Expected output
 
 - ![screenshot](frontend/credentials.png)
