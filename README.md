@@ -56,7 +56,7 @@ export BLOCKCHAIN_ID="maxonrow-chain"
 
 ### Step 8 - Checkout article
 
-- checkout our [cookbook](https://medium.com/) on how to design & implement NFT.
+- checkout our [cookbook](https://medium.com/maxonrow/maxathon-challenge-2-credential-and-certificate-issuance-d7729ce59aaf) on how to design & implement NFT.
 - please! remember to claps, follow & share. we will mint you something! You will find out soon!
 
 ### Step 9 - Expected output
