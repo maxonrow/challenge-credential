@@ -59,5 +59,5 @@ export BLOCKCHAIN_ID="maxonrow-chain"
 - ![screenshot](frontend/credentials.png)
 
 ### Step 9 - Checkout article
-- checkout our [cookbook]((https://medium.com/maxonrow/maxathon-challenge-2-credential-and-certificate-issuance-d7729ce59aaf)).
+- checkout our [cookbook](https://medium.com/maxonrow/maxathon-challenge-2-credential-and-certificate-issuance-d7729ce59aaf).
 - please! remember to claps, follow & share. we will mint you something! You will find out soon!
